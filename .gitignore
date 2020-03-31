@@ -1,0 +1,12 @@
+bin
+lib
+node_modules
+build
+share
+coverage
+stats.json
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
