@@ -8,8 +8,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import * as searchSimilarActions from './actions';
-import { makeSelectSimilar } from './selectors';
+import { makeSelectSimilar, makeLoadersSimilar } from './selectors';
 import Card from './Card';
 
 const Wrapper = styled.div`
@@ -52,11 +53,18 @@ class SearchPage extends React.PureComponent {
   };
 
   render() {
-    const { sentences, inputValue } = this.state;
+    const { inputValue, sentences } = this.state;
+    const { loaders, similarDic } = this.props;
 
     return (
       <Wrapper>
         <ColWrapper>
+          <Typography gutterBottom>
+            Instead of looking for texts containing sentences that are close
+            in meaning, V 1 of this app uses the small word2vec magnitude model
+            and finds similarities separately for each word in the original sentence, composing new sentences from them.
+          </Typography>
+          <br/>
           <TextField
             id="outlined-multiline-static"
             label="Insert Text"
@@ -72,9 +80,10 @@ class SearchPage extends React.PureComponent {
           {sentences.map((sentence, i) => sentence.length > 0 && (
             <Card
               key={i}
-              dictionary={this.props.similarDic}
+              dictionary={similarDic}
               query={sentence}
               onFind={this._searchForSimilar(sentence)}
+              isLoading={loaders[sentence]}
             />
           ))}
         </ColWrapper>
@@ -86,10 +95,12 @@ class SearchPage extends React.PureComponent {
 SearchPage.propTypes = {
   similarDic: PropTypes.object.isRequired,
   searchForSame: PropTypes.func.isRequired,
+  loaders: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
     similarDic: makeSelectSimilar(),
+    loaders: makeLoadersSimilar(),
   },
 );
 

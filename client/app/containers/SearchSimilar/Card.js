@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { capitalize } from 'lodash';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import Paper from '@material-ui/core/Paper';
 import Collapse from '@material-ui/core/Collapse';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import messages from './messages';
 
 const FrameWrapper = styled.div`
   height: 100%;
@@ -30,7 +33,7 @@ const Card = (props) => {
     setChecked((prev) => !prev);
   };
 
-  const { query, dictionary, onFind } = props;
+  const { query, dictionary, onFind, isLoading } = props;
   const similars = dictionary[query];
   const btnText = (similars && checked) ? messages.hideBtn : messages.showBtn;
   const btnHandler = similars ? handleChange : onFind;
@@ -40,10 +43,13 @@ const Card = (props) => {
       {similars && (
         <Collapse in={checked}>
           <ol>
-          {similars.map((sim, i) => <li key={i}>{sim}</li>)}
+            {similars.map((sent, i) => (
+              <li key={i}>{capitalize(sent)}</li>)
+            )}
           </ol>
         </Collapse>
       )}
+      {isLoading && <p><CircularProgress /></p>}
       <div>
         <br />
         <Button onClick={btnHandler} color="primary">
@@ -54,6 +60,11 @@ const Card = (props) => {
   )
 };
 
-Card.propTypes = {};
+Card.propTypes = {
+  query: PropTypes.string,
+  dictionary: PropTypes.object.isRequired,
+  onFind: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
+};
 
 export default Card;

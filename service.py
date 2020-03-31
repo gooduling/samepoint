@@ -1,7 +1,7 @@
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS, cross_origin
 import os
-# from model import similarity
+from model import findSentenses
 
 app = Flask(__name__, static_folder='client/build')
 cors = CORS(app)
@@ -23,14 +23,7 @@ def serve(path):
 @cross_origin()
 def similarity_route():
     query = request.args.get("query")
-    #simList = similarity(query)
-    simList = [
-        "Sentense 1",
-        "Sentense 2",
-        "Sentense 3",
-        "Sentense 4",
-        "Sentense 5",
-    ]
+    simList = findSentenses(query)
 
     return {
         "similar": simList

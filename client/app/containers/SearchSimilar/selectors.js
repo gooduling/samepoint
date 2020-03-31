@@ -14,4 +14,10 @@ const makeSelectSimilar = () =>
     similarState => similarState.similarDic,
   );
 
-export { selectSimilar, makeSelectSimilar };
+const makeLoadersSimilar = () =>
+  createSelector(
+    selectSimilar,
+    similarState => similarState.loaders,
+  );
+
+export { selectSimilar, makeSelectSimilar, makeLoadersSimilar };
