@@ -13,7 +13,7 @@ import request from '../../utils/request';
  * Github repos request/response handler
  */
 export function* getRepos({ query }) {
-  const requestURL = `http://127.0.0.1:8000/api/similarity?query=${query}`; // TODO: replace with local
+  const requestURL = `/api/similarity?query=${query}`;
 
   try {
     // Call our request helper (see 'utils/request')
