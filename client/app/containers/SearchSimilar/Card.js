@@ -43,7 +43,7 @@ const Card = (props) => {
       {similars && (
         <Collapse in={checked}>
           <ol>
-            {similars.map((sent, i) => (
+            {similars.map((sent, i) => sent && (
               <li key={i}>{capitalize(sent)}</li>)
             )}
           </ol>
