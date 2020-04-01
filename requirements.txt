@@ -2,7 +2,7 @@ annoy==1.16.3
 appnope==0.1.0
 attrs==19.3.0
 backcall==0.1.0
-bleach==3.1.0
+bleach==3.1.4
 click==7.1.1
 decorator==4.4.1
 defusedxml==0.6.0
