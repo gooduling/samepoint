@@ -1,20 +1,17 @@
 from pymagnitude import Magnitude
 
 vectors = Magnitude('glove-lemmatized.magnitude')
-defaultSent = "Cat loves to eat"
 
-def findSentenses(sentense = defaultSent, amount = 6):
+def findSentenses(sentense, amount = 5):
     words = sentense.split()
-#     synonims = [similarWords(word) for word in words]
-#     synonimsDic = { word: similarWords(word) for word in enumerate(words) }
-
-    resultList = [[], [], [], [], [], []] #prepare the storage of n empty arrays
+    resultList = [[], [], [], [], [], []] # prepare the storage of 5 empty lists
     for word in words:
-        synonims = vectors.most_similar(vectors.query(word), topn = amount);
+        synonims = vectors.most_similar(vectors.query(word), topn = amount)
 
-        for index, synTuple in enumerate(synonims):
-            a, b = synTuple
-            resultList[index].append(a)
+        for index, synonimTuple in enumerate(synonims):
+            name, metric = synonim
+            # put every of 5 synonims in the corresponding list
+            resultList[index].append(name)
 
     result = [" ".join(sList) for sList in resultList]
 

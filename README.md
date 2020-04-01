@@ -5,9 +5,12 @@ and finds similarities separately  for each word in the original sentence, compo
 
 ## Quick start
 
-1.  Make sure that you have Python 3, Node.js v8.15.1 and npm v5 or above installed.
+1.  Make sure that you have Python 3, virtualenv, Node.js v8.15.1 and npm v5 or above installed.
 2.  Run <br />
- `source venv/bin/activate` <br />
+        `git clone https://github.com/gooduling/samepoint.git` <br />
+        `cd samepoint` <br />
+        `python3 -m venv env` <br />
+        `source env/bin/activate` <br />
          `pip3 install -r requirements.txt` <br />
          `python3 service.py` <br /> to install python dependencies and run the server.
 3.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>/client`.<br />

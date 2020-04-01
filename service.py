@@ -1,4 +1,4 @@
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS, cross_origin
 import os
 from model import findSentenses
@@ -19,11 +19,13 @@ def serve(path):
 @cross_origin()
 def similarity_route():
     query = request.args.get("query")
-    simList = findSentenses(query)
-
-    return {
-        "similar": simList
-    }
+    if query:
+        simList = findSentenses(query)
+        return jsonify({
+            "similar": simList
+        })
+    else:
+        return jsonify({ "error": "No query parameter"}), 400
 
 if __name__ == "__main__":
     app.run(port=8000, debug=True)
