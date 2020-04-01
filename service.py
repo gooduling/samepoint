@@ -15,10 +15,6 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
-# @app.route("/", methods=['GET'])
-# def indexPage():
-#     return send_from_directory(app.static_folder, 'index.html')
-
 @app.route("/api/similarity", methods=['GET'])
 @cross_origin()
 def similarity_route():

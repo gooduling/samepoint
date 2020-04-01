@@ -1,12 +1,7 @@
 from pymagnitude import Magnitude
 
 vectors = Magnitude('glove-lemmatized.magnitude')
-cat_vector = vectors.query('cat')
-
-res = []
 defaultSent = "Cat loves to eat"
-def similarWords(word):
-    return vectors.most_similar(vectors.query(word), topn = 5)
 
 def findSentenses(sentense = defaultSent, amount = 6):
     words = sentense.split()
