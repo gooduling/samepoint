@@ -5,7 +5,7 @@ Flask==1.1.2
 Flask-Cors==3.0.8
 h5py==2.10.0
 itsdangerous==1.1.0
-Jinja2==2.11.1
+Jinja2==2.11.3
 lz4==3.0.2
 MarkupSafe==1.1.1
 monotonic==1.5
